@@ -10,3 +10,39 @@ pillow>=10.0
 numpy>=1.26
 matplotlib>=3.8
 requests>=2.31
+
+# ---------------------------------------------------------------------------
+# HaMeR hand-keypoint extraction (extract_hamer_keypoints.py) -- NOT needed
+# for run_depth.py. Install with:  pip install -r requirements.txt
+#
+# HaMeR itself and its bundled ViTPose are editable installs from the
+# recursive clone, so they can't be pinned here. After the packages below
+# are in place, run:
+#
+#   git clone --recursive https://github.com/geopavlakos/hamer.git
+#   pip install -e ./hamer
+#   pip install -e ./hamer/third-party/ViTPose
+#   python -c "from hamer.configs import CACHE_DIR_HAMER; \
+#             from hamer.models import download_models; \
+#             download_models(CACHE_DIR_HAMER)"
+#
+# The download step pulls the HaMeR checkpoint + MANO model (~a few GB).
+# ---------------------------------------------------------------------------
+opencv-python>=4.8
+smplx==0.1.28
+yacs>=0.1.8
+pytorch-lightning>=2.0
+scikit-image>=0.21
+einops>=0.7
+timm>=0.9
+trimesh>=4.0
+pyrender>=0.1.45
+webdataset>=0.2
+gdown>=5.0
+rich>=13.0
+chumpy @ git+https://github.com/mattloper/chumpy          # MANO .pkl loading
+detectron2 @ git+https://github.com/facebookresearch/detectron2.git  # compiles against torch above; person detector
+# ViTPose backbone (mmcv is version-sensitive; install the wheel that matches
+# your torch/CUDA, e.g.  pip install "mmcv>=2.1,<2.2" -f https://download.openmmlab.com/mmcv/dist/cu121/torch2.1/index.html):
+mmcv>=2.1,<2.2
+mmengine>=0.10

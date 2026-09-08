@@ -14,7 +14,14 @@ image), which already ships `torch`/`torchvision 2.8.0+cu128` with working CUDA.
 Only the Hugging Face stack is added on top:
 
 ```bash
-/usr/local/bin/python -m pip install -r requirements.txt
+./install.sh
+```
+
+The installer uses `/usr/local/bin/python` by default. Set `PYTHON` to use a
+different Python executable:
+
+```bash
+PYTHON=python3 ./install.sh
 ```
 
 The model weights (~1.8 GB) are cached on the **local container disk** at
@@ -55,6 +62,28 @@ Or drive it from another process:
 
 ```bash
 find /data/frames -name '*.png' | /usr/local/bin/python run_depth.py --serve --outdir out
+```
+
+## HaMeR hand keypoints
+
+`extract_hamer_keypoints.py` runs the HaMeR detector pipeline on one image and
+saves HaMeR 3D hand keypoints, projected 2D keypoints, hand meshes, and the
+intermediate ViTPose detections in a compressed `.npz` file:
+
+```bash
+python extract_hamer_keypoints.py --image images/hand.jpg --outdir outputs
+```
+
+The extra Python packages (OpenCV, Detectron2, mmcv, smplx, ...) are listed in
+the HaMeR section of `requirements.txt`. HaMeR itself, its bundled ViTPose, and
+the model checkpoints / MANO assets are editable installs and large downloads,
+so follow the commented steps at the bottom of `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+git clone --recursive https://github.com/geopavlakos/hamer.git
+pip install -e ./hamer ./hamer/third-party/ViTPose
+python -c "from hamer.configs import CACHE_DIR_HAMER; from hamer.models import download_models; download_models(CACHE_DIR_HAMER)"
 ```
 
 ### Outputs (in `--outdir`, default `./outputs/`)
