@@ -1,0 +1,11 @@
+# Runs on the RunPod runpod-torch-v280 system Python (/usr/local/bin/python),
+# which already has torch 2.8.0+cu128 with CUDA. The torch pin below matches
+# that install so pip is a no-op for it.
+torch==2.8.0
+transformers>=4.48
+accelerate>=0.30
+safetensors>=0.4
+pillow>=10.0
+numpy>=1.26
+matplotlib>=3.8
+requests>=2.31

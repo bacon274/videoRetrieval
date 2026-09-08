@@ -1,0 +1,11 @@
+# Pip dependencies for the DepthPro depth-estimation project.
+# torch 2.8.x from PyPI ships the CUDA 12.8 build on Linux, which works with
+# the RTX A4000 / driver 595 on this host.
+torch>=2.8,<2.9
+transformers>=4.48
+accelerate>=0.30
+safetensors>=0.4
+pillow>=10.0
+numpy>=1.26
+matplotlib>=3.8
+requests>=2.31

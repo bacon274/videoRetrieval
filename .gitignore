@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.conda/
+
+# Project outputs / data
+outputs/
+images/
+*.npy
+
+# HF / model caches (in case someone points HF_HOME here)
+.cache/
+hf_cache/
